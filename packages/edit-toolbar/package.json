@@ -1,0 +1,16 @@
+{
+  "name": "@leafer-in/edit-toolbar",
+  "version": "1.0.5",
+  "description": "Floating Contextual Edit Toolbar and AI Actions Plugin for Leafer UI",
+  "author": "JiyuShao & Leafer AI Team",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@leafer-ui/core": "2.2.11",
+    "@leafer-in/editor": "2.2.11"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@leafer-ui/agent",
+  "version": "2.2.11",
+  "description": "Native Canvas AI Agent Framework and Scene Graph Reasoning for Leafer UI",
+  "author": "Leafer AI Team",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@leafer/core": "2.2.11",
+    "@leafer-ui/core": "2.2.11",
+    "@leafer-ui/display": "2.2.11",
+    "@leafer-ui/ai": "2.2.11"
+  }
+}

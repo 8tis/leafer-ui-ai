@@ -1,19 +1,46 @@
 {
   "name": "leafer-ui",
   "version": "2.2.11",
-  "author": "Chao (Leafer) Wan",
+  "description": "Next-Generation AI Infinite Canvas & Graphic Agent Engine built on Leafer UI",
+  "author": "Chao (Leafer) Wan & Leafer AI Team",
   "license": "MIT",
   "type": "module",
   "main": "dist/web.esm.min.js",
   "exports": {
-    "import": "./dist/web.esm.min.js",
-    "require": "./dist/web.min.cjs",
-    "types": "./types/index.d.ts"
+    ".": {
+      "import": "./dist/web.esm.min.js",
+      "require": "./dist/web.min.cjs",
+      "types": "./types/index.d.ts"
+    },
+    "./ai": {
+      "import": "./packages/ai/src/index.ts",
+      "types": "./packages/ai/src/index.ts"
+    },
+    "./agent": {
+      "import": "./packages/agent/src/index.ts",
+      "types": "./packages/agent/src/index.ts"
+    },
+    "./edit-toolbar": {
+      "import": "./packages/edit-toolbar/src/index.ts",
+      "types": "./packages/edit-toolbar/src/index.ts"
+    }
+  },
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Build Leafer packages'"
   },
   "types": "types/index.d.ts",
   "unpkg": "dist/web.min.js",
   "jsdelivr": "dist/web.min.js",
-  "files": ["src","types","dist","README-CN.md"],
+  "files": [
+    "src",
+    "types",
+    "dist",
+    "packages",
+    "README.md",
+    "README-EN.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/leaferjs/leafer-ui"
@@ -28,6 +55,9 @@
     "html5",
     "canvas",
     "2d",
+    "ai-canvas",
+    "agent",
+    "infinite-canvas",
     "graphic",
     "renderer",
     "engine"

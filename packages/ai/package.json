@@ -1,0 +1,17 @@
+{
+  "name": "@leafer-ui/ai",
+  "version": "2.2.11",
+  "description": "Native AI Canvas Generation Frame and Toolkit for Leafer UI",
+  "author": "Leafer AI Team",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@leafer/core": "2.2.11",
+    "@leafer-ui/core": "2.2.11",
+    "@leafer-ui/display": "2.2.11"
+  }
+}

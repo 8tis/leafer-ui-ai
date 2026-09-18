@@ -112,50 +112,91 @@
       <!-- Minimap Radar -->
       <div class="minimap-card" id="minimap-card" title="画布导航雷达 (点击可快速平移)"></div>
 
-      <!-- Bottom Floating AI Prompt Dock -->
-      <section class="bottom-prompt-dock">
-        <!-- Controls Header -->
-        <div class="prompt-controls-bar">
-          <!-- Model Selection -->
-          <div class="pill-select-wrapper">
-            <select class="pill-select" id="model-select" title="选择生成模型">
-              <!-- Dynamically populated -->
-            </select>
-            <span class="pill-select-icon">▼</span>
+      <!-- Bottom Floating AI Prompt & Agent Dock -->
+      <section class="bottom-prompt-dock" id="bottom-prompt-dock">
+        <!-- Dock Header: Mode Switcher & Mode Controls -->
+        <div class="dock-header-bar">
+          <div class="dock-mode-tabs">
+            <button class="dock-tab-btn active" id="dock-mode-gen-btn" data-mode="generate" title="进入标准选框生图模式">
+              <span class="tab-icon">🎨</span>
+              <span class="tab-title">选框生图</span>
+            </button>
+            <button class="dock-tab-btn" id="dock-mode-agent-btn" data-mode="agent" title="进入 Canvas Agent 画布助手模式">
+              <span class="tab-icon">🤖</span>
+              <span class="tab-title">Agent 智能助手</span>
+              <span class="dock-tab-badge">AI 规划</span>
+            </button>
           </div>
 
-          <button class="action-btn secondary" id="fetch-models-dock-btn" style="padding: 4px 9px; font-size: 11px;" title="从当前配置的服务商 API 自动获取最新模型列表">
-            🔄 获取模型
-          </button>
+          <!-- Controls when in Generate Mode -->
+          <div class="prompt-controls-bar" id="dock-gen-controls">
+            <!-- Model Selection -->
+            <div class="pill-select-wrapper">
+              <select class="pill-select" id="model-select" title="选择生成模型">
+                <!-- Dynamically populated -->
+              </select>
+              <span class="pill-select-icon">▼</span>
+            </div>
 
-          <!-- Aspect Ratio Selection -->
-          <div class="pill-select-wrapper">
-            <select class="pill-select" id="ratio-select" title="构图比例">
-              <!-- Dynamically populated -->
-            </select>
-            <span class="pill-select-icon">▼</span>
+            <button class="action-btn secondary" id="fetch-models-dock-btn" style="padding: 4px 9px; font-size: 11px;" title="从当前配置的服务商 API 自动获取最新模型列表">
+              🔄 获取模型
+            </button>
+
+            <!-- Aspect Ratio Selection -->
+            <div class="pill-select-wrapper">
+              <select class="pill-select" id="ratio-select" title="构图比例">
+                <!-- Dynamically populated -->
+              </select>
+              <span class="pill-select-icon">▼</span>
+            </div>
+
+            <!-- Quick Random Prompt -->
+            <button class="action-btn secondary" id="random-prompt-btn" style="padding: 4px 10px; font-size: 11px;" title="随机填入灵感提示词">
+              🎲 随机灵感
+            </button>
           </div>
 
-          <!-- Quick Random Prompt -->
-          <button class="action-btn secondary" id="random-prompt-btn" style="padding: 4px 10px; font-size: 11px;" title="随机填入灵感提示词">
-            🎲 随机灵感
-          </button>
+          <!-- Quick Action Suggestions when in Agent Mode -->
+          <div class="dock-agent-quick-bar" id="dock-agent-quick-bar" style="display: none;">
+            <button class="dock-quick-pill" data-agent-cmd="横向对齐排版所有图层" title="智能横向排列对齐当前选区或画布元素">🪄 智能横排</button>
+            <button class="dock-quick-pill" data-agent-cmd="纵向对齐排版所有图层" title="智能纵向排列对齐当前选区或画布元素">📑 智能纵排</button>
+            <button class="dock-quick-pill" data-agent-cmd="部署16:9生成选区框" title="在画布居中创建 16:9 比例生成框">📐 16:9 画框</button>
+            <button class="dock-quick-pill" data-agent-cmd="生成一张赛博猫咪卡片" title="自动生成赛博猫咪插画卡片">🐱 赛博猫咪</button>
+            <button class="dock-quick-pill" data-agent-cmd="创建一个现代化圆角矩形卡片" title="添加现代化卡片图形">🎨 矩形卡片</button>
+            <button class="action-btn secondary" id="dock-agent-clear-btn" style="padding: 3px 8px; font-size: 11px; margin-left: auto;" title="清空对话记录">
+              🧹 清空
+            </button>
+          </div>
+        </div>
+
+        <!-- Integrated Agent Chat Conversation Panel (Expands inside the dock) -->
+        <div class="dock-agent-chat-panel" id="dock-agent-chat-panel" style="display: none;">
+          <div class="agent-body" id="agent-chat-messages">
+            <div class="agent-msg assistant">
+              <div class="agent-msg-author">🤖 Canvas AI Agent</div>
+              👋 你好！我是已直接整合到底部搜索框的 Canvas AI Agent。你可以直接在下方输入框下达自然语言指令，我能理解画布全景并自主操作：<br>
+              • 自动排列对齐画布上的多个图形与图片<br>
+              • 在指定位置布设 AI 生成选区框并自动触发渲染<br>
+              • 自动生成现代化卡片元素与视觉组件<br>
+              请直接在下方大输入框输入你的想法，或者点击上方快捷按钮！
+            </div>
+          </div>
         </div>
 
         <!-- Reference Images Chips (if any) -->
         <div class="ref-images-container" id="ref-images-container"></div>
 
-        <!-- Prompt Textarea & Action -->
+        <!-- Unified Prompt / Command Textarea & Action -->
         <div class="prompt-input-row">
           <textarea id="prompt-input" class="prompt-textarea" rows="2" placeholder="描述你想生成的画面 (例如: 湖蓝色调的山谷，清晨薄雾，极简插画风 / 按 Cmd+Enter 快速生成)..."></textarea>
           <div class="prompt-actions-right">
             <button class="generate-btn" id="generate-btn">
-              <span>✨ 选框生成</span>
+              <span id="generate-btn-text">✨ 选框生成</span>
             </button>
           </div>
         </div>
 
-        <!-- Style Presets Chips -->
+        <!-- Style Presets Chips (visible in generate mode) -->
         <div class="style-chips-bar" id="style-chips-bar">
           <!-- Dynamically populated style chips -->
         </div>
@@ -364,6 +405,7 @@
   <script src="vendor/plugins/text-editor.min.js"></script>
   <script src="vendor/plugins/arrow.min.js"></script>
   <script src="vendor/plugins/state.min.js"></script>
+  <script src="vendor/plugins/edit-toolbar.min.js"></script>
 
   <!-- Main Application Script -->
   <script type="module" src="js/app.js"></script>
