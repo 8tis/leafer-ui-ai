@@ -62,7 +62,18 @@ export class CanvasApp {
 
     // Layers root group
     this.artLayer = new Group({ name: 'ArtLayer' });
+    this.overlayLayer = new Group({ name: 'OverlayLayer' });
     this.tree.add(this.artLayer);
+    this.tree.add(this.overlayLayer);
+
+    // Initial comfortable view scale for 1024x1024 artwork
+    const initScale = 0.65;
+    this.tree.scale = initScale;
+    this.zoomLevel = initScale;
+    this.tree.x = (this.container.clientWidth - 1024 * initScale) / 2;
+    this.tree.y = (this.container.clientHeight - 1024 * initScale) / 2 - 30;
+    this.onZoomChange(this.zoomLevel);
+    this.updateGridOffset();
 
     this.setupEvents();
     this.setupViewportNavigation();
