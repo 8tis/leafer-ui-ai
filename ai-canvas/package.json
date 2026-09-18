@@ -1,0 +1,20 @@
+{
+  "name": "rolldek-ai-canvas-studio",
+  "version": "1.0.0",
+  "description": "Infinite AI Canvas Studio powered by LeaferJS and RollDek multi-model image generation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "leaferjs",
+    "ai-canvas",
+    "rolldek",
+    "gpt-image",
+    "gemini",
+    "openai",
+    "infinite-canvas"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

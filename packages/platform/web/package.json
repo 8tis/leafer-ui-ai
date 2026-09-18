@@ -1,0 +1,31 @@
+{
+  "name": "@leafer-ui/web",
+  "version": "2.2.11",
+  "description": "@leafer-ui/web",
+  "author": "Chao (Leafer) Wan",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "types": "types/index.d.ts",
+  "files": ["src","types","dist"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leaferjs/leafer-ui.git"
+  },
+  "homepage": "https://github.com/leaferjs/leafer-ui/tree/main/packages/platform/web",
+  "bugs": "https://github.com/leaferjs/leafer-ui/issues",
+  "keywords": [
+    "leafer-ui",
+    "leaferjs"
+  ],
+  "dependencies": {
+    "@leafer/web-core": "2.2.11",
+    "@leafer/partner": "2.2.11",
+    "@leafer/interface": "2.2.11",
+    "@leafer-ui/draw": "2.2.11",
+    "@leafer-ui/core": "2.2.11",
+    "@leafer-ui/interaction-web": "2.2.11",
+    "@leafer-ui/partner": "2.2.11",
+    "@leafer-ui/interface": "2.2.11",
+    "@leafer-in/interface": "2.2.11"
+  }
+}
